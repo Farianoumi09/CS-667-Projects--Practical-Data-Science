@@ -5,11 +5,13 @@ A class object in Python is essentially a blueprint for creating instances, whic
 
 For example, in the given script, the URLValidator class is defined as follows:
 
+
 class URLValidator:
     """
     A class that evaluates the credibility of a webpage using factors like domain trust,
     content relevance, fact-checking, bias detection, and citations.
     """
+    
 Here, URLValidator serves as a blueprint. When an instance is created using validator = URLValidator(), we obtain an object (validator) that can access the methods inside the class to validate URLs. This approach enhances encapsulation by keeping related data and functions together, promotes reusability by allowing multiple instances to be created without rewriting code, and improves modularity by structuring the code efficiently.
 
 2. What is a Docstring?
@@ -17,8 +19,10 @@ A docstring is a multi-line string used to describe a module, class, or function
 
 For example, in the fetch_page_content function, a docstring is used to explain the function’s purpose:
 
+
 def fetch_page_content(self, url: str) -> str:
     """ Fetches and extracts text content from the given URL. """
+    
 This docstring makes it immediately clear that the function retrieves and extracts text content from a provided URL. Following best practices for docstrings ensures clear descriptions, explanations of input parameters and return values, and adherence to Python’s PEP 257 docstring conventions.
 
 3. How to Define __init__ in a Class Object?
@@ -30,6 +34,7 @@ def __init__(self):
     self.serpapi_key = SERPAPI_KEY
     self.similarity_model = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
     self.fake_news_classifier = pipeline("text-classification", model="mrm8488/bert-tiny-finetuned-fake-news-detection")
+    
 When an instance of URLValidator is created, this method initializes the serpapi_key variable, loads the necessary machine learning models, and ensures all required components are ready for use. Using __init__ is crucial because it allows dynamic attribute initialization, ensuring that every instance of the class is correctly set up when created.
 
 4. How to Let Functions Fail Gracefully?
@@ -45,6 +50,7 @@ def fetch_page_content(self, url: str) -> str:
         return " ".join([p.text for p in soup.find_all("p")])
     except requests.RequestException:
         return ""  # Instead of crashing, it returns an empty string
+        
 In this function, the try block attempts to fetch the webpage. If an error occurs, such as a timeout or network failure, the except block catches the exception and prevents the program from crashing. Instead of terminating execution, the function returns an empty string, ensuring that subsequent operations can continue without failure.
 
 5. What’s a Good Practice for Return Statements?
